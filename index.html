@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan untuk Telponan</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            animation: zoomIn 1.5s ease;
+            color: #ffefef;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ffe6e6;
+        }
+
+        .heart {
+            font-size: 4rem;
+            color: #ff4d6d;
+            animation: heartbeat 1.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            flex: 1;
+        }
+
+        .button.accept {
+            background: #ff4d6d;
+            flex: 1;
+        }
+
+        .button.accept:hover {
+            background: #e33d5a;
+            transform: scale(1.1);
+        }
+
+        .button.decline {
+            background: #cccccc;
+            color: #333;
+            position: relative;
+        }
+
+        .button.decline:hover {
+            animation: moveButton 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ffffff33, transparent);
+            filter: blur(30px);
+            border-radius: 50%;
+            animation: sparkle 5s infinite;
+        }
+
+        .sparkle:nth-child(2) {
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .sparkle:nth-child(3) {
+            bottom: -50px;
+            left: 30%;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const declineButton = document.querySelector(".button.decline");
+
+            declineButton.addEventListener("mouseover", () => {
+                moveButtonRandomly(declineButton);
+            });
+
+            declineButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                moveButtonRandomly(declineButton);
+            });
+
+            let stepIndex = 0;
+
+function moveButtonRandomly(button) {
+    const container = button.parentElement;
+    const containerRect = container.getBoundingClientRect();
+
+    const positions = [
+        { x: containerRect.width - button.offsetWidth, y: 2 }, // Kanan atas
+        { x: containerRect.width - button.offsetWidth, y: containerRect.height - button.offsetHeight }, // Kanan bawah
+        { x: 0, y: containerRect.height - button.offsetHeight }, // Kiri bawah
+        { x: 0, y: 0 } // Kiri atas
+    ];
+
+    // Pilih posisi berdasarkan langkah
+    const position = positions[stepIndex % positions.length];
+    stepIndex++;
+
+    button.style.transform = `translate(${position.x}px, ${position.y}px)`;
+}
+
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>Sayanggg, Telponan Yoo?</h1>
+        <p>Kalau punya waktu, aku mau denger suara kamu  malam ini heheee</p>
+        <div class="button-group">
+            <a href="https://wa.me/6287848241287?text=Halo%20sayangkuu,%20aku%20bisa%20banget%20telponan%20malam%20ini!%20🤍" 
+               class="button accept">Ya, Aku Mau!</a>
+            <a href="#" class="button decline">Nanti, Ya</a>
+        </div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+    </div>
+</body>
+</html>
